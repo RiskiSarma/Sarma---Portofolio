@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<!--
+    DOCTYPE html = deklarasi HTML5. HARUS ada di baris pertama.
+    Tanpa ini, browser masuk "quirks mode" dan rendering tidak konsisten.
+-->
+<html lang="en">
+<!--
+    lang="en" = untuk accessibility (screen reader) dan SEO.
+-->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--
+        viewport meta tag = WAJIB untuk responsive design.
+        width=device-width  → lebar halaman = lebar layar device
+        initial-scale=1.0   → tidak ada zoom default
+    -->
+    <meta name="description" content="Portfolio of Rizki Saputra Sarma — Web Developer & IT Professional. D-IV Teknik Informatika, Politeknik Negeri Lhokseumawe.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!--
+        preconnect = browser memulai koneksi ke server font lebih awal.
+        Mempercepat loading font (performance optimization).
+    -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+
+    <title>Rizki Saputra Sarma — Web Developer &amp; IT Professional</title>
+</head>
+
+<body>
+
+    <!-- ============================================================
+         NAVBAR
+         <nav> = semantic tag untuk navigasi utama halaman.
+         position: fixed di CSS agar tetap terlihat saat scroll.
+         ============================================================ -->
+    <nav class="navbar" id="navbar" aria-label="Main navigation">
+        <div class="nav-inner">
+            <!-- Logo: inisial nama, klik → kembali ke atas -->
+            <a href="#home" class="nav-logo" aria-label="Rizki Saputra Sarma — kembali ke atas">
+                <span class="nav-logo__text">RSS</span>
+            </a>
+
+            <!-- Desktop links -->
+            <ul class="nav-links" id="nav-links" role="list">
+                <li><a href="#about"    class="nav-link">About</a></li>
+                <li><a href="#skills"   class="nav-link">Skills</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#contact"  class="nav-link">Contact</a></li>
+            </ul>
+
+            <!--
+                Hamburger: hanya tampil di mobile (via CSS).
+                aria-expanded → screen reader tahu apakah menu terbuka.
+                aria-controls → merujuk ke id menu yang dikontrol.
+            -->
+            <button class="hamburger" id="hamburger"
+                    aria-label="Buka menu navigasi"
+                    aria-expanded="false"
+                    aria-controls="nav-links">
+                <span class="hamburger__bar"></span>
+                <span class="hamburger__bar"></span>
+                <span class="hamburger__bar"></span>
+            </button>
+        </div>
+    </nav>
+
+
+    <!-- ============================================================
+         HERO SECTION
+         <header> = semantic tag untuk bagian utama atas halaman.
+         id="home" = anchor target saat klik logo navbar.
+         ============================================================ -->
+    <header class="hero" id="home">
+
+        <!-- Dekorasi geometric background, murni visual -->
+        <div class="hero-deco" aria-hidden="true">
+            <div class="hero-deco__ring hero-deco__ring--1"></div>
+            <div class="hero-deco__ring hero-deco__ring--2"></div>
+            <div class="hero-deco__dot hero-deco__dot--1"></div>
+            <div class="hero-deco__dot hero-deco__dot--2"></div>
+            <div class="hero-deco__dot hero-deco__dot--3"></div>
+        </div>
+
+        <div class="hero-content">
+            <div class="hero-badge">
+                <!--
+                    Status badge: visual signal bahwa kandidat sedang mencari kerja.
+                    Dot animasi = "live" indicator — menarik perhatian recruiter.
+                -->
+                <span class="hero-badge__dot" aria-hidden="true"></span>
+                Available for opportunities
+            </div>
+
+            <!--
+                <h1> = heading paling penting, SATU per halaman.
+                Search engine memberi bobot tinggi pada konten h1.
+            -->
+            <h1 class="hero-name">Rizki Saputra<br><span class="hero-name__accent">Sarma</span></h1>
+
+            <p class="hero-role">Web Developer &amp; IT Professional</p>
+            <!--
+                &amp; = HTML entity untuk "&".
+                Wajib digunakan di HTML agar tidak parsing error.
+            -->
+
+            <p class="hero-desc">
+                Fresh graduate from Politeknik Negeri Lhokseumawe with expertise
+                in full-stack web development, UI/UX design, and system administration.
+            </p>
+
+            <!--
+                CTA buttons: dua aksi utama yang diinginkan dari recruiter.
+                href="#contact" → smooth scroll ke section contact (via CSS + JS).
+                download attribute → paksa browser download file daripada membukanya.
+            -->
+            <div class="hero-actions">
+                <a href="#contact" class="btn btn--primary" id="btn-contact">
+                    Get In Touch
+                    <!--
+                        Inline SVG arrow icon: lebih ringan daripada icon library.
+                        aria-hidden → screen reader skip icon, baca teks "Get In Touch" saja.
+                    -->
+                    <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+                <a href="./assets/cv.pdf" class="btn btn--outline" download>
+                    <!--
+                        download attribute: browser akan download file cv.pdf dari folder assets/.
+                        Pastikan file assets/cv.pdf ada sebelum deploy ke GitHub Pages.
+                    -->
+                    Download CV
+                    <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+                    </svg>
+                </a>
+            </div>
+
+            <!-- Stat row: angka kecil yang menambah kredibilitas -->
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <strong>4+</strong>
+                    <span>Skills Domain</span>
+                </div>
+                <div class="hero-stat-divider" aria-hidden="true"></div>
+                <div class="hero-stat">
+                    <strong>3+</strong>
+                    <span>Projects Built</span>
+                </div>
+                <div class="hero-stat-divider" aria-hidden="true"></div>
+                <div class="hero-stat">
+                    <strong>2025</strong>
+                    <span>Graduate</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll cue di pojok kanan bawah -->
+        <div class="hero-scroll-cue" aria-hidden="true">
+            <span>scroll</span>
+            <div class="hero-scroll-cue__line"></div>
+        </div>
+
+    </header>
+    <!-- /header#home -->
+
+
+    <!-- ============================================================
+         MAIN CONTENT
+         <main> = konten utama halaman. Satu per halaman.
+         Tidak boleh di dalam header/footer/nav.
+         ============================================================ -->
+    <main>
+
+
+        <!-- ============================================================
+             ABOUT SECTION
+             id="about" = anchor target untuk href="#about" di navbar.
+             aria-labelledby = hubungkan section ke heading-nya untuk screen reader.
+             ============================================================ -->
+        <section id="about" class="section about" aria-labelledby="about-title">
+            <div class="container">
+
+                <header class="section-header">
+                    <p class="section-label">Introduction</p>
+                    <h2 id="about-title">About Me</h2>
+                </header>
+
+                <!--
+                    Dua kolom di desktop: bio (kiri) + info card (kanan).
+                    Mobile: stack vertikal (diatur di media query CSS).
+                -->
+                <div class="about-grid">
+
+                    <!-- ── Kolom kiri: bio + soft skills ── -->
+                    <div class="about-bio">
+                        <p>
+                            Fresh graduate from <strong>Politeknik Negeri Lhokseumawe</strong>
+                            with a D-IV degree in Teknik Informatika. I build user-friendly web
+                            applications and have hands-on experience in both frontend and backend
+                            development, UI/UX design, and Windows system administration.
+                        </p>
+                        <p>
+                            I enjoy working across the full stack — writing clean PHP and MySQL on
+                            the backend, crafting responsive layouts on the frontend, and designing
+                            intuitive interfaces in Figma. I'm a quick learner who adapts well to
+                            new tools and technologies.
+                        </p>
+                        <p>
+                            Currently open to full-time positions in web development or IT support,
+                            as well as freelance projects. I thrive in collaborative environments
+                            and take ownership of my work from concept to delivery.
+                        </p>
+
+                        <!--
+                            Soft skills: pill grid layout.
+                            Menggunakan <ul> karena ini list of skills (semantic).
+                            Tampil sebagai grid pill/chip (diatur di CSS).
+                        -->
+                        <div class="soft-skills">
+                            <p class="soft-skills__label">Soft Skills</p>
+                            <ul class="soft-skills__grid" role="list">
+                                <li class="soft-skill-pill">Problem Solving</li>
+                                <li class="soft-skill-pill">Team Collaboration</li>
+                                <li class="soft-skill-pill">Fast Learner</li>
+                                <li class="soft-skill-pill">Attention to Detail</li>
+                                <li class="soft-skill-pill">Communication</li>
+                                <li class="soft-skill-pill">Time Management</li>
+                                <li class="soft-skill-pill">Adaptability</li>
+                                <li class="soft-skill-pill">Critical Thinking</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- ── Kolom kanan: info card ── -->
+                    <aside class="about-info" aria-label="Quick information">
+                        <!--
+                            <aside> = konten yang berkaitan tapi bisa berdiri sendiri.
+                            Info card ini tidak butuh konteks bio untuk dipahami.
+                        -->
+
+                        <div class="info-card">
+                            <div class="info-row">
+                                <!--
+                                    Inline SVG icons: tidak butuh CDN, tidak tambah HTTP request.
+                                    Setiap icon menggunakan currentColor → warna bisa dicontrol via CSS.
+                                -->
+                                <span class="info-icon" aria-hidden="true">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                                        <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+                                    </svg>
+                                </span>
+                                <div>
+                                    <strong>D-IV Teknik Informatika</strong>
+                                    <span>Politeknik Negeri Lhokseumawe · 2025</span>
+                                </div>
+                            </div>
+
+                            <div class="info-row">
+                                <span class="info-icon" aria-hidden="true">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+                                        <circle cx="12" cy="10" r="3"/>
+                                    </svg>
+                                </span>
+                                <div>
+                                    <strong>Lhokseumawe, Aceh</strong>
+                                    <span>Available on-site &amp; remote</span>
+                                </div>
+                            </div>
+
+                            <div class="info-row">
+                                <span class="info-icon" aria-hidden="true">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <rect x="2" y="7" width="20" height="14" rx="2"/>
+                                        <path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/>
+                                    </svg>
+                                </span>
+                                <div>
+                                    <strong>Open to Opportunities</strong>
+                                    <span>Web Dev · IT Support · Freelance</span>
+                                </div>
+                            </div>
+
+                            <div class="info-row">
+                                <span class="info-icon" aria-hidden="true">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/>
+                                    </svg>
+                                </span>
+                                <div>
+                                    <strong>GitHub</strong>
+                                    <span>RiskiSarma</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- CTA kecil di bawah info card -->
+                        <a href="#contact" class="about-cta">
+                            Let's work together
+                            <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+
+                    </aside>
+                </div>
+            </div>
+        </section>
+        <!-- /section#about -->
+
+
+        <!-- ============================================================
+             SKILLS SECTION
+             ============================================================ -->
+        <section id="skills" class="section skills" aria-labelledby="skills-title">
+            <div class="container">
+
+                <header class="section-header">
+                    <p class="section-label">What I Know</p>
+                    <h2 id="skills-title">Technical Skills</h2>
+                </header>
+
+                <!--
+                    4 skill cards.
+                    Desktop: 4 kolom | Tablet: 2 kolom | Mobile: 1 kolom
+                    Diatur dengan CSS Grid + media queries di style.css.
+                -->
+                <div class="skills-grid">
+
+                    <!--
+                        Setiap card: SVG icon + kategori + list skill.
+                        Icon menggunakan inline SVG (tidak butuh CDN).
+                        stroke="currentColor" = warna dicontrol via CSS.
+                    -->
+                    <div class="skill-card">
+                        <div class="skill-card__icon skill-card__icon--blue" aria-hidden="true">
+                            <!--
+                                Icon "code": dua simbol </> yang mewakili frontend/HTML.
+                                Polyline = path berupa titik-titik yang dihubungkan.
+                            -->
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="16 18 22 12 16 6"/>
+                                <polyline points="8 6 2 12 8 18"/>
+                            </svg>
+                        </div>
+                        <h3 class="skill-card__title">Frontend</h3>
+                        <ul class="skill-list" role="list">
+                            <li>HTML5 &amp; CSS3</li>
+                            <li>JavaScript</li>
+                            <li>Responsive Design</li>
+                            <li>UI Implementation</li>
+                        </ul>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-card__icon skill-card__icon--green" aria-hidden="true">
+                            <!-- Icon "database": cylinder yang merepresentasikan database/server -->
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <ellipse cx="12" cy="5" rx="9" ry="3"/>
+                                <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/>
+                                <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+                            </svg>
+                        </div>
+                        <h3 class="skill-card__title">Backend</h3>
+                        <ul class="skill-list" role="list">
+                            <li>PHP</li>
+                            <li>MySQL</li>
+                            <li>Database Design</li>
+                            <li>SQL Queries</li>
+                        </ul>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-card__icon skill-card__icon--purple" aria-hidden="true">
+                            <!-- Icon "layout": merepresentasikan UI layout/design -->
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="3" width="18" height="18" rx="2"/>
+                                <path d="M3 9h18"/>
+                                <path d="M9 21V9"/>
+                            </svg>
+                        </div>
+                        <h3 class="skill-card__title">UI/UX Design</h3>
+                        <ul class="skill-list" role="list">
+                            <li>Figma</li>
+                            <li>Design Principles</li>
+                            <li>User Research</li>
+                            <li>Prototyping</li>
+                        </ul>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-card__icon skill-card__icon--amber" aria-hidden="true">
+                            <!-- Icon "monitor": merepresentasikan system administration -->
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="3" width="20" height="14" rx="2"/>
+                                <path d="M8 21h8M12 17v4"/>
+                            </svg>
+                        </div>
+                        <h3 class="skill-card__title">System Admin</h3>
+                        <ul class="skill-list" role="list">
+                            <li>Windows Installation</li>
+                            <li>System Configuration</li>
+                            <li>Troubleshooting</li>
+                            <li>Network Basics</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        <!-- /section#skills -->
+
+
+        <!-- ============================================================
+             PROJECTS SECTION
+             ============================================================ -->
+        <section id="projects" class="section projects" aria-labelledby="projects-title">
+            <div class="container">
+
+                <header class="section-header">
+                    <p class="section-label">Work</p>
+                    <h2 id="projects-title">Featured Projects</h2>
+                </header>
+
+                <div class="projects-grid">
+
+                    <!--
+                        <article> = konten yang bisa berdiri sendiri di luar konteks halaman.
+                        Tiap project bisa di-share atau dipublikasikan terpisah dan tetap masuk akal.
+                        Berbeda dengan <div> yang tidak punya makna semantic.
+                    -->
+                    <article class="project-card" aria-label="Project: E-Commerce Website">
+
+                        <!--
+                            Image area: aspect-ratio 16/9 memastikan area tetap ada
+                            meskipun gambar belum dimuat (mencegah layout shift).
+                            
+                            loading="lazy" = gambar dimuat hanya saat hampir terlihat.
+                            Meningkatkan kecepatan load awal halaman.
+                            
+                            alt text yang deskriptif = wajib untuk accessibility & SEO.
+                        -->
+                        <div class="project-card__thumb">
+                            <img
+                                src="./assets/project1.png"
+                                alt="Screenshot of E-Commerce Website showing product listing page with shopping cart"
+                                loading="lazy"
+                                width="600" height="338"
+                            >
+                            <div class="project-card__overlay" aria-hidden="true">
+                                <span class="project-type">Web App</span>
+                            </div>
+                        </div>
+
+                        <div class="project-card__body">
+
+                            <!-- Number label: visual hierarchy tambahan -->
+                            <span class="project-num" aria-hidden="true">01</span>
+
+                            <h3 class="project-card__title">E-Commerce Website</h3>
+                            <p class="project-card__desc">
+                                Full-stack web application with PHP and MySQL. Features product listing,
+                                shopping cart, user authentication, and an admin dashboard for
+                                inventory management.
+                            </p>
+
+                            <!-- Tech stack tags -->
+                            <div class="tech-tags" aria-label="Teknologi yang digunakan">
+                                <span class="tech-tag">HTML</span>
+                                <span class="tech-tag">CSS</span>
+                                <span class="tech-tag">PHP</span>
+                                <span class="tech-tag">MySQL</span>
+                            </div>
+
+                            <div class="project-card__links">
+                                <!--
+                                    target="_blank" = buka di tab baru (standar untuk external links).
+                                    rel="noopener noreferrer" = WAJIB bersama target="_blank".
+                                    Tanpa ini: halaman baru bisa akses halaman asli via window.opener
+                                    → celah keamanan (reverse tabnapping attack).
+                                -->
+                                <a href="#" class="project-link project-link--primary" target="_blank" rel="noopener noreferrer">
+                                    Live Demo
+                                    <svg aria-hidden="true" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                        <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/>
+                                    </svg>
+                                </a>
+                                <a href="#" class="project-link project-link--ghost" target="_blank" rel="noopener noreferrer">
+                                    GitHub
+                                    <svg aria-hidden="true" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/>
+                                    </svg>
+                                </a>
+                            </div>
+
+                        </div>
+                    </article>
+
+
+                    <article class="project-card" aria-label="Project: UI/UX Redesign">
+
+                        <div class="project-card__thumb">
+                            <img
+                                src="./assets/project2.png"
+                                alt="Figma mockup showing redesigned UI with improved navigation and user flow"
+                                loading="lazy"
+                                width="600" height="338"
+                            >
+                            <div class="project-card__overlay" aria-hidden="true">
+                                <span class="project-type">UI/UX</span>
+                            </div>
+                        </div>
+
+                        <div class="project-card__body">
+                            <span class="project-num" aria-hidden="true">02</span>
+                            <!-- TODO: Ganti [App Name] dengan nama aplikasi yang kamu redesign -->
+                            <h3 class="project-card__title">UI/UX Redesign — [App Name]</h3>
+                            <p class="project-card__desc">
+                                End-to-end design case study. Process covered user research,
+                                wireframing, high-fidelity mockup in Figma, and usability testing
+                                with target users.
+                            </p>
+
+                            <div class="tech-tags" aria-label="Teknologi yang digunakan">
+                                <span class="tech-tag">Figma</span>
+                                <span class="tech-tag">UI Design</span>
+                                <span class="tech-tag">Prototyping</span>
+                                <span class="tech-tag">User Research</span>
+                            </div>
+
+                            <div class="project-card__links">
+                                <a href="#" class="project-link project-link--primary" target="_blank" rel="noopener noreferrer">
+                                    View Design
+                                    <svg aria-hidden="true" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                        <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/>
+                                    </svg>
+                                </a>
+                                <a href="#" class="project-link project-link--ghost" target="_blank" rel="noopener noreferrer">
+                                    Case Study
+                                    <svg aria-hidden="true" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                        <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+
+                    <article class="project-card" aria-label="Project: IT Infrastructure Setup">
+
+                        <div class="project-card__thumb">
+                            <img
+                                src="./assets/project3.png"
+                                alt="Documentation screenshot showing Windows installation steps and network configuration diagram"
+                                loading="lazy"
+                                width="600" height="338"
+                            >
+                            <div class="project-card__overlay" aria-hidden="true">
+                                <span class="project-type">IT / Docs</span>
+                            </div>
+                        </div>
+
+                        <div class="project-card__body">
+                            <span class="project-num" aria-hidden="true">03</span>
+                            <h3 class="project-card__title">IT Infrastructure Setup</h3>
+                            <p class="project-card__desc">
+                                Comprehensive documentation of Windows installation and network
+                                configuration for a lab environment, including user management,
+                                peripheral setup, and a structured troubleshooting guide.
+                            </p>
+
+                            <div class="tech-tags" aria-label="Teknologi yang digunakan">
+                                <span class="tech-tag">Windows</span>
+                                <span class="tech-tag">Networking</span>
+                                <span class="tech-tag">Documentation</span>
+                            </div>
+
+                            <div class="project-card__links">
+                                <a href="#" class="project-link project-link--primary" target="_blank" rel="noopener noreferrer">
+                                    Read Docs
+                                    <svg aria-hidden="true" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                        <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/>
+                                    </svg>
+                                </a>
+                                <a href="#" class="project-link project-link--ghost" target="_blank" rel="noopener noreferrer">
+                                    GitHub
+                                    <svg aria-hidden="true" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+        <!-- /section#projects -->
+
+
+        <!-- ============================================================
+             CONTACT SECTION
+             ============================================================ -->
+        <section id="contact" class="section contact" aria-labelledby="contact-title">
+            <div class="container">
+
+                <header class="section-header">
+                    <p class="section-label">Say Hello</p>
+                    <h2 id="contact-title">Get In Touch</h2>
+                    <p class="section-desc">
+                        Open to full-time positions, freelance work, and collaborations.
+                        Pick the platform that's most convenient for you.
+                    </p>
+                </header>
+
+                <div class="contact-grid">
+
+                    <!--
+                        href="mailto:" → membuka mail client default pengguna.
+                        Tidak butuh form — lebih langsung dan efisien untuk recruiter.
+                    -->
+                    <a href="mailto:riski.sarma28@gmail.com" class="contact-card">
+                        <div class="contact-card__icon" aria-hidden="true">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                <polyline points="22,6 12,13 2,6"/>
+                            </svg>
+                        </div>
+                        <div class="contact-card__info">
+                            <strong>Email</strong>
+                            <span>riski.sarma28@gmail.com</span>
+                        </div>
+                        <div class="contact-card__arrow" aria-hidden="true">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </div>
+                    </a>
+
+                    <!--
+                        External links: wajib target="_blank" + rel="noopener noreferrer".
+                        aria-label tambahan "(opens in new tab)" untuk screen reader.
+                    -->
+                    <a href="https://www.linkedin.com/in/riski-sarma-670746221/"
+                       class="contact-card"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       aria-label="LinkedIn — opens in new tab">
+                        <div class="contact-card__icon" aria-hidden="true">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/>
+                                <rect x="2" y="9" width="4" height="12"/>
+                                <circle cx="4" cy="4" r="2"/>
+                            </svg>
+                        </div>
+                        <div class="contact-card__info">
+                            <strong>LinkedIn</strong>
+                            <span>Riski Saputra Sarma</span>
+                        </div>
+                        <div class="contact-card__arrow" aria-hidden="true">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </div>
+                    </a>
+
+                    <a href="https://github.com/RiskiSarma"
+                       class="contact-card"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       aria-label="GitHub — opens in new tab">
+                        <div class="contact-card__icon" aria-hidden="true">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/>
+                            </svg>
+                        </div>
+                        <div class="contact-card__info">
+                            <strong>GitHub</strong>
+                            <span>RiskiSarma</span>
+                        </div>
+                        <div class="contact-card__arrow" aria-hidden="true">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </div>
+                    </a>
+
+                    <!--
+                        WhatsApp direct link format: https://wa.me/[kode negara][nomor]
+                        Indonesia: +62 → hilangkan 0 di depan nomor lokal.
+                        0895-1650-1019 → wa.me/6289516501019
+                    -->
+                    <a href="https://wa.me/6289516501019"
+                       class="contact-card"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       aria-label="WhatsApp — opens in new tab">
+                        <div class="contact-card__icon" aria-hidden="true">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+                            </svg>
+                        </div>
+                        <div class="contact-card__info">
+                            <strong>WhatsApp</strong>
+                            <span>+62 895-1650-1019</span>
+                        </div>
+                        <div class="contact-card__arrow" aria-hidden="true">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </div>
+                    </a>
+
+                </div>
+            </div>
+        </section>
+        <!-- /section#contact -->
+
+    </main>
+
+
+    <!-- ============================================================
+         FOOTER
+         <footer> = semantic tag untuk bagian bawah halaman.
+         ============================================================ -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <p class="footer-copy">
+                &copy; 2025 <strong>Rizki Saputra Sarma</strong>.
+                Built with HTML &amp; CSS — no frameworks.
+            </p>
+            <p class="footer-sub">KAreerr Elevation Vol. 2 · Portfolio Project</p>
+        </div>
+    </footer>
+
+
+    <!-- ============================================================
+         JAVASCRIPT
+
+         Diletakkan di AKHIR <body> agar:
+         1. HTML selesai di-parse duluan → semua elemen sudah ada
+            saat querySelector dijalankan
+         2. User melihat konten lebih cepat (JS tidak blok rendering)
+
+         Tiga fungsi vanilla JS (tanpa library):
+         1. Navbar scroll effect
+         2. Hamburger menu toggle
+         3. Smooth scroll dengan offset navbar (explicit handler)
+         ============================================================ -->
+    <script>
+
+        /* ─── 1. NAVBAR SCROLL EFFECT ─────────────────────────
+           Ubah tampilan navbar saat user scroll melewati hero.
+           'scroll' event dipanggil sangat sering → kode harus ringan.
+        ──────────────────────────────────────────────────────── */
+        const navbar = document.querySelector('#navbar');
+
+        window.addEventListener('scroll', function () {
+            // window.scrollY = jumlah pixel yang sudah di-scroll dari atas
+            if (window.scrollY > 50) {
+                navbar.classList.add('navbar--solid');
+            } else {
+                navbar.classList.remove('navbar--solid');
+            }
+        });
+
+
+        /* ─── 2. HAMBURGER MENU TOGGLE ────────────────────────
+           Buka/tutup nav menu di mobile saat tombol ☰ diklik.
+        ──────────────────────────────────────────────────────── */
+        const hamburger = document.querySelector('#hamburger');
+        const navLinks  = document.querySelector('#nav-links');
+
+        hamburger.addEventListener('click', function () {
+            // classList.toggle(): tambah class jika belum ada, hapus jika sudah ada
+            const isOpen = navLinks.classList.toggle('nav-links--open');
+            hamburger.classList.toggle('hamburger--open');
+
+            // Update aria-expanded agar screen reader tahu status menu
+            hamburger.setAttribute('aria-expanded', String(isOpen));
+            hamburger.setAttribute('aria-label', isOpen ? 'Tutup menu navigasi' : 'Buka menu navigasi');
+        });
+
+        // Tutup menu otomatis saat salah satu link diklik
+        navLinks.querySelectorAll('.nav-link').forEach(function (link) {
+            link.addEventListener('click', function () {
+                navLinks.classList.remove('nav-links--open');
+                hamburger.classList.remove('hamburger--open');
+                hamburger.setAttribute('aria-expanded', 'false');
+                hamburger.setAttribute('aria-label', 'Buka menu navigasi');
+            });
+        });
+
+
+        /* ─── 3. SMOOTH SCROLL DENGAN OFFSET NAVBAR ──────────
+           CSS scroll-behavior: smooth sudah menghandle scroll,
+           tapi kita butuh offset agar section tidak tertutup navbar.
+
+           Cara kerja:
+           - Intercept semua klik pada anchor link internal (#...)
+           - Hitung posisi target - tinggi navbar
+           - Scroll ke posisi yang sudah dihitung
+           - Ini lebih reliable dari scroll-padding-top di semua browser
+        ──────────────────────────────────────────────────────── */
+        document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
+            anchor.addEventListener('click', function (event) {
+                const targetId = this.getAttribute('href');
+
+                // Lewati jika hanya "#" tanpa target
+                if (targetId === '#') return;
+
+                const targetEl = document.querySelector(targetId);
+                if (!targetEl) return;
+
+                // Cegah default browser scroll (yang tidak punya offset)
+                event.preventDefault();
+
+                // Hitung posisi: top elemen target relatif ke viewport + scroll saat ini
+                const navbarHeight = navbar.offsetHeight;
+                const targetTop    = targetEl.getBoundingClientRect().top + window.pageYOffset;
+                const offset       = 24;  // extra breathing room di bawah navbar
+
+                window.scrollTo({
+                    top:      targetTop - navbarHeight - offset,
+                    behavior: 'smooth'
+                    /*
+                        behavior: 'smooth' = animasi scroll yang halus.
+                        Didukung semua browser modern (Chrome, Firefox, Safari, Edge).
+                    */
+                });
+            });
+        });
+
+    </script>
+
+</body>
+</html>
